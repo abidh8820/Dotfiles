@@ -1,6 +1,3 @@
-
-source $HOME/.config/nvim/plug-config/coc.vim
-
 call plug#begin('~/.config/nvim/autoload/plugged')
   " Change dates fast
   Plug 'tpope/vim-speeddating'
