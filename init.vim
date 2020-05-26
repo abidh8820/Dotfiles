@@ -4,7 +4,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   " Convert binary, hex, etc..
   Plug 'arcticicestudio/nord-vim'
   Plug 'glts/vim-radical'
+  Plug 'rhysd/vim-clang-format'
   " Files
+  
   Plug 'tpope/vim-eunuch'
   " Repeat stuff
   Plug 'tpope/vim-repeat'
