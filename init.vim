@@ -127,3 +127,4 @@ call plug#end()
   set guifont=DroidSansMono\ Nerd\ Font\ 12
   let g:airline_theme='minimalist' "minimalist  lucius 
   :imap uu <Esc> 
+  set clipboard=unnamedplus
