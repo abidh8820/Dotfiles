@@ -4,7 +4,7 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
-
+#Custom and bar color settings
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
@@ -49,7 +49,7 @@ floating_modifier $mod
 bindsym $mod+Return exec termite
 bindsym $mod+b exec termite -e ranger 
 bindsym $mod+n exec termite -e nvim
-bindsym $mod+c exec google-chrome-stable ; workspace 2 
+bindsym $mod+c exec brave 
 # kill focused window
 bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
@@ -186,22 +186,13 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # panel
+# bar
 bar {
-
-        colors {
-        background #2f343f
-        statusline #323232
-        separator ##666666
-
-        # colour of border, background, and text
-        focused_workspace       ##666666 #bf616a #d8dee8
-        active_workspace        #2f343f #2f343f #d8dee8
-        inactive_workspace      #2f343f #2f343f #d8dee8
-        urgent_workspacei       #2f343f #ebcb8b #2f343f
-    }
-        status_command i3status
+        i3bar_command i3bar --transparency
+  	strip_workspace_numbers yes
+	status_command i3status 
+	position top
 }
-
 # colour of border, background, text, indicator, and child_border
 client.focused              #323232 #2f343f #d8dee8 #bf616a #323232
 client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f 
@@ -210,8 +201,8 @@ client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.background           #2f343f
 
-for_window [class="^.*"] border pixel 2
-gaps inner 2
-gaps outer 2
+for_window [class="^.*"] border pixel 1
+gaps inner 5
+gaps outer 5 
 #smart_gaps on
 #smart_borders on
