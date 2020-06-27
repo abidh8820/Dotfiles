@@ -2,31 +2,32 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 " convert binary, hex, etc..
    Plug 'tomasiser/vim-code-dark'
    Plug 'vim-airline/vim-airline-themes'
-  Plug 'scrooloose/nerdtree'
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-  Plug 'arcticicestudio/nord-vim'
-  Plug 'glts/vim-radical'
-  "css color
-  Plug 'ap/vim-css-color' 
-  " files
-  Plug 'tpope/vim-eunuch'
-  " repeat stuff
-  Plug 'tpope/vim-repeat'
-  " surround
-  Plug 'ryanoasis/vim-devicons' 
-  Plug 'tpope/vim-surround'
-  Plug 'rhysd/vim-clang-format'
-  " better comments
-  Plug 'tpope/vim-commentary'
-  " Plug 'preservim/nerdcommenter'
-  " have the file system follow you around
-  Plug 'airblade/vim-rooter'
-  " auto set indent settings
-  Plug 'tpope/vim-sleuth'
-  Plug 'morhetz/gruvbox'
-  if exists('g:vscode')
+   Plug 'scrooloose/nerdtree'
+   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+   Plug 'arcticicestudio/nord-vim'
+   Plug 'glts/vim-radical'
+   Plug 'HerringtonDarkholme/yats.vim'
+   "css color
+   Plug 'ap/vim-css-color' 
+   " files
+   Plug 'tpope/vim-eunuch'
+   " repeat stuff
+   Plug 'tpope/vim-repeat'
+   " surround
+   Plug 'ryanoasis/vim-devicons' 
+   Plug 'tpope/vim-surround'
+   Plug 'rhysd/vim-clang-format'
+   " better comments
+   Plug 'tpope/vim-commentary'
+   " Plug 'preservim/nerdcommenter'
+   " have the file system follow you around
+   Plug 'airblade/vim-rooter'
+   " auto set indent settings
+   Plug 'tpope/vim-sleuth'
+   Plug 'morhetz/gruvbox'
+   if exists('g:vscode')
     " easy motion for vscode
-    Plug 'asvetliakov/vim-easymotion'
+   Plug 'asvetliakov/vim-easymotion'
     
   else
     " text navigation
@@ -48,8 +49,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Plug 'NLKNguyen/papercolor-theme'
     " Plug 'tomasiser/vim-code-dark'
     " Intellisense
-      Plug 'neoclide/coc.nvim', {'branch' : 'release'}  " Status Line
-      Plug 'vim-airline/vim-airline'
+    Plug 'neoclide/coc.nvim', {'branch' : 'release'}  " Status Line
+    Plug 'vim-airline/vim-airline'
 
     " Plug 'vim-airline/vim-airline-themes'
     " Ranger
@@ -84,9 +85,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'metakirby5/codi.vim'
     " Vim Wiki
     " Plug 'https://github.com/vimwiki/vimwiki.git'
-  endif
+    endif
 
-call plug#end()
+   call plug#end()
 
   set fileencoding=utf-8
   set fileencodings=ucs-bom,utf-8,gbk,cp936,latin-1
@@ -107,12 +108,14 @@ call plug#end()
   set foldlevel=99
   set ignorecase        "ignore the case when search texts
   set smartcase         "if searching text contains uppercase case will not be ignored
+  set incsearch
 " Lookings
-  set number           "line number
+  set relativenumber "line number
   set cursorline       "hilight the line of the cursor
   set nowrap           "no line wrapping
-  colorscheme codedark"use the theme gruvbox
-  set background=dark"use the light version of gruvbox
+  colorscheme gruvbox  "use the theme gruvbox
+  set number
+  set background=dark  "use the light version of gruvbox
   " change the color of chars over the width of 80 into blue
   " (uncomment to enable it)
   "au BufWinEnter * let w:m2=matchadd('Underlined', '\%>' . 80 . 'v.\+', -1)
@@ -121,10 +124,13 @@ call plug#end()
   :autocmd BufNewFile *.cxx 0r ~/.tem.cxx
    map<F5> :w <CR> : FloatermNew  --height=0.9 --width=0.7  ./a.out <CR>
    map<F4> :w <CR> :! g++  % <CR>
+   map<C+s> :w 
+   map<F2> : term python % 
   let g:airline#extensions#tabline#enabled = 1
   let g:airline_powerline_fonts = 1
   map<F6> :w <CR> :ClangFormat <CR>
+
   set guifont=DroidSansMono\ Nerd\ Font\ 12
   let g:airline_theme='minimalist' "minimalist  lucius 
-  :imap uu <Esc> 
+  :imap <uu> <Esc> 
   set clipboard=unnamedplus
