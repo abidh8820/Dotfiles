@@ -126,7 +126,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
    map<C+s> :w 
    map<F2> : term python % 
   let g:airline#extensions#tabline#enabled = 1
-"  let g:airline_powerline_fonts = 1
+  " install nerd fonts complete
+  let g:airline_powerline_fonts = 1
   map<F6> :w <CR> :ClangFormat <CR>
 
   set guifont=DroidSansMono\ Nerd\ Font\ 12
