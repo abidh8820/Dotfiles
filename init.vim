@@ -1,4 +1,4 @@
-call plug#begin('~/.config/nvim/autoload/plugged')  
+call plug#begin('~/.config/nvim/autoload/plugged') 
 " convert binary, hex, etc..
    Plug 'tomasiser/vim-code-dark'
    Plug 'vim-airline/vim-airline-themes'
@@ -113,21 +113,20 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   set relativenumber "line number
   set cursorline       "hilight the line of the cursor
   set nowrap           "no line wrapping
-  colorscheme gruvbox  "use the theme gruvbox
+  colorscheme codedark  "use the theme gruvbox
   set number
   set background=dark  "use the light version of gruvbox
   " change the color of chars over the width of 80 into blue
   " (uncomment to enable it)
   "au BufWinEnter * let w:m2=matchadd('Underlined', '\%>' . 80 . 'v.\+', -1)
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  :autocmd BufNewFile *.cpp 0r ~/.tem.cpp
-  :autocmd BufNewFile *.cxx 0r ~/.tem.cxx
-   map<F5> :w <CR> : FloatermNew  --height=0.9 --width=0.7  ./a.out <CR>
-   map<F4> :w <CR> :! g++  % <CR>
+  :autocmd BufNewFile *.cpp 0r ~/.temp.temp
+   map<F5> :w <CR> : term g++ -std=c++17 % &&  ./a.out <CR>
+   map<F4> :w <CR> :! g++ -std=c++17 % <CR>
    map<C+s> :w 
    map<F2> : term python % 
   let g:airline#extensions#tabline#enabled = 1
-  let g:airline_powerline_fonts = 1
+"  let g:airline_powerline_fonts = 1
   map<F6> :w <CR> :ClangFormat <CR>
 
   set guifont=DroidSansMono\ Nerd\ Font\ 12
