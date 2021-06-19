@@ -12,6 +12,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'mhinz/vim-startify'
     Plug 'honza/vim-snippets'
     Plug 'SirVer/ultisnips'
+    Plug 'morhetz/gruvbox'
    call plug#end()
 
   set fileencoding=utf-8
@@ -37,11 +38,11 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   set smartcase         "if searching text contains uppercase case will not be ignored
   set incsearch
   set relativenumber "line number
-  "set cursorline       "hilight the line of the cursor
+  set cursorline       "hilight the line of the cursor
   set nowrap           "no line wrapping
   colorscheme codedark  "use the theme gruvbox
   set number
-  "set background=dark  "use the light version of gruvbox
+  set bg=dark  "use the light version of gruvbox
 
   :autocmd BufNewFile *.cpp 0r ~/.temp.temp
   map<F5> :w <CR> : term g++ -std=c++17 % &&  ./a.out <CR>
