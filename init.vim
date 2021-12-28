@@ -45,6 +45,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   set bg=dark  "use the light version of gruvbox
 
   :autocmd BufNewFile *.cpp 0r ~/.temp.temp
+  :autocmd BufNewFile *.java 0r ~/.java.temp
   map<F5> :w <CR> : term g++ -std=c++17 % &&  ./a.out <CR>
   map<F4> :w <CR> :term javac % && java %:t:r  <CR>
   let g:airline#extensions#tabline#enabled = 1
