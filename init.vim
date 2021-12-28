@@ -46,7 +46,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
   :autocmd BufNewFile *.cpp 0r ~/.temp.temp
   map<F5> :w <CR> : term g++ -std=c++17 % &&  ./a.out <CR>
-  map<F4> :w <CR> :! g++ -std=c++17 % <CR>
+  map<F4> :w <CR> :term javac % && java %:t:r  <CR>
   let g:airline#extensions#tabline#enabled = 1
   "let g:airline_powerline_fonts = 1
   map<F6> :w <CR> :ClangFormat <CR>
