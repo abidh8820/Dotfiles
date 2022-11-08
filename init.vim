@@ -13,6 +13,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'honza/vim-snippets'
     Plug 'SirVer/ultisnips'
     Plug 'morhetz/gruvbox'
+    Plug 'dracula/vim'
    call plug#end()
 
   set fileencoding=utf-8
@@ -20,6 +21,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   set fileformat=unix
   set fileformats=unix,dos,mac
 
+  set mouse=a
   filetype on
   filetype plugin on
   filetype plugin indent on
@@ -38,16 +40,51 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   set smartcase         "if searching text contains uppercase case will not be ignored
   set incsearch
   set relativenumber "line number
-  set cursorline       "hilight the line of the cursor
+"  set cursorline       "hilight the line of the cursor
   set nowrap           "no line wrapping
   colorscheme codedark  "use the theme gruvbox
   set number
   set bg=dark  "use the light version of gruvbox
 
+  let g:Codesdir=$HOME . "/Codes"
+
+  autocmd filetype cpp map <F5> :! g++ % -D LOCAL -std=c++17 -o /home/abidh8820/Codes/program && (timeout 5 /home/abidh8820/Codes/program < /home/abidh8820/Codes/in) >  /home/abidh8820/Codes/out<CR>
+
+  "functions
+
+"Copy/Paste Output/Input
+  fu UpdateInput()
+    exe "silent !xclip -o -sel clip > " . g:Codesdir . "/in"
+  endfu
+
+  fu CopyOutput()
+    exe "silent !xclip -sel clip " . g:Codesdir . "/out"
+  endfu
+
+ 
+  map <F4> :call UpdateInput() <CR>
+  map<leader><F3> :call CopyOutput() <CR>
+
+
+ " Leader key
+  let mapleader=',,'
+
+  noremap <C-s> :w <CR>
+  inoremap <C-s> <ESC>:w<CR>
+
+ " Copy template
+  noremap <Leader>t :!cp temp.temp %<CR><CR>
+
   :autocmd BufNewFile *.cpp 0r ~/.temp.temp
-  :autocmd BufNewFile *.java 0r ~/.java.temp
   map<F5> :w <CR> : term g++ -std=c++17 % &&  ./a.out <CR>
-  map<F4> :w <CR> :term javac % && java %:t:r  <CR>
+
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+
   let g:airline#extensions#tabline#enabled = 1
   "let g:airline_powerline_fonts = 1
   map<F6> :w <CR> :ClangFormat <CR>
@@ -55,13 +92,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   let g:airline_theme='minimalist' "minimalist  lucius 
   set clipboard=unnamedplus
 
-  "Use <C-l> for trigger snippet expand.
-  imap <C-l> <Plug>(coc-snippets-expand)
-  " Use <C-j> for select text for visual placeholder of snippet.
-  vmap <C-j> <Plug>(coc-snippets-select)
-  " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-  let g:coc_snippet_next = '<c-j>'
+"  let g:coc_snippet_next = '<c-j>'
   " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-  let g:coc_snippet_prev = '<c-k>'
-  " Use <C-j> for both expand and jump (make expand higher priority.)
-  imap <C-j> <Plug>(coc-snippets-expand-jump)
+"  let g:coc_snippet_prev = '<c-k>'
