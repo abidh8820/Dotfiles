@@ -1,66 +1,34 @@
-  set fileencoding=utf-8
-  set fileencodings=ucs-bom,utf-8
-  set fileformat=unix
-  set fileformats=unix,dos,mac
-
-  set mouse=a
-  filetype on
-  filetype plugin on
+set mouse=a
+  set termguicolors
   filetype plugin indent on
   syntax on
 
 " Some useful settings
-  set smartindent
-  set expandtab         "tab to spaces
+  set smartindent expandtab ignorecase smartcase incsearch relativenumber nowrap autoread
   set tabstop=4         "the width of a tab
   set shiftwidth=4      "the width for indent
-  set encoding=UTF-8
- " set foldenable
-  set foldmethod=indent "folding by indent
-  set foldlevel=99
-  set ignorecase        "ignore the case when search texts
-  set smartcase         "if searching text contains uppercase case will not be ignored
-  set incsearch
-  set relativenumber "line number
-"  set cursorline       "hilight the line of the cursor
-  set nowrap           "no line wrapping
   colorscheme pablo
 
-  autocmd filetype cpp map <F5> :! g++ % -D LOCAL -std=c++17 -o  /home/abidh8820/Codes/program && (timeout 5 /home/abidh8820/Codes/program < /home/abidh8820/Codes/in) >  /home/abidh8820/Codes/out<CR>
+"auto pair curlybraces
+  inoremap {<ENTER> {}<LEFT><CR><ESC><S-o>
 
-  let g:Codesdir=$HOME . "/Codes"
+" mapping jj to esc
+  inoremap jj <ESC>  
 
-  "Copy/Paste Output/Input
-  fu UpdateInput()
-    exe "silent !xclip -o -sel clip > " . g:Codesdir . "/in"
-  endfu
-
-  fu CopyOutput()
-    exe "silent !xclip -sel clip " . g:Codesdir . "/out"
-  endfu
-
- 
-  map <F4> :call UpdateInput() <CR>
-  map<leader><F3> :call CopyOutput() <CR>
+  "compile and run using file input put  
+  autocmd filetype cpp map <F5> :!clear && g++ % -D LOCAL -std=c++17 -Wall -Wextra -Wconversion -Wshadow -Wfloat-equal -o  ~/Codes/prog && (timeout 5 ~/Codes/prog < ~/Codes/in) >  ~/Codes/out<CR>
+  "copy to input file
+  map <F4> :!xclip -o -sel clip > ~/Codes/in <CR><CR>
 
 
  " Leader key
   let mapleader=',,'
 
-  noremap <C-s> :w <CR>
-  inoremap <C-s> <ESC>:w<CR>
-
  " Copy template
-  noremap <Leader>t :!cp temp.temp %<CR><CR>
+  noremap <Leader>t :!cp ~/Codes/temp.cpp %<CR><CR>
+  :autocmd BufNewFile *.cpp 0r ~/Codes/temp.cpp
 
-  :autocmd BufNewFile *.cpp 0r ~/.temp.temp
+  "note if vim-features +clipboard is not found, it will not work
+  "for fast check :echo has('clipboard) = 0 if clipboard features not present,
+  "need vim-gtk / vim-gtk3 package for this
   set clipboard=unnamedplus
-
-
-" inoremap " ""<left>
-" inoremap ' ''<left>
-" inoremap ( ()<left>
-" inoremap [ []<left>
-" inoremap { {}<left>
-" inoremap {<CR> {<CR>}<ESC>O
-" inoremap {;<CR> {<CR>};<ESC>O
